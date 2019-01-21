@@ -115,6 +115,8 @@ public class Gt06ProtocolDecoder extends BaseProtocolDecoder {
             case MSG_GPS_2:
             case MSG_FENCE_SINGLE:
             case MSG_FENCE_MULTI:
+            case  MSG_WIFI:
+             case    MSG_WIFI_2 :
                 return true;
             default:
                 return false;
@@ -135,6 +137,8 @@ public class Gt06ProtocolDecoder extends BaseProtocolDecoder {
             case MSG_FENCE_MULTI:
             case MSG_LBS_ALARM:
             case MSG_LBS_ADDRESS:
+             case  MSG_WIFI:
+             case   MSG_WIFI_2 :
                 return true;
             default:
                 return false;
@@ -660,6 +664,7 @@ public class Gt06ProtocolDecoder extends BaseProtocolDecoder {
 
             if (hasLbs(type)) {
                 decodeLbs(position, buf, hasStatus(type));
+                decodeWifi(position, buf, hasStatus(type));
             }
 
             if (hasStatus(type)) {
